@@ -59,12 +59,12 @@ namespace SortFile
 
             if (openFile.ShowDialog() == true)
             {
-                
+
 
                 using (FileStream fs = File.Open(openFile.FileName, FileMode.Open))
                 {
                     textboxOpen.Text = openFile.FileName;
-                  
+
                 }
             }
         }
@@ -76,7 +76,7 @@ namespace SortFile
 
             if (saveFile.ShowDialog() == true)
             {
-            
+
                 using (FileStream fs = File.Create(saveFile.FileName))
                 {
                     textboxSave.Text = saveFile.FileName;
@@ -120,15 +120,11 @@ namespace SortFile
             }
 
 
-
-
-                //Console.WriteLine("{0} - {1}", u.Number, u.Str);
-
             using (StreamWriter sw = new StreamWriter(textboxSave.Text, false, System.Text.Encoding.Default))
             {
 
-                 string data = string.Join(Environment.NewLine, resultAllList.Select((x)=> x.Number +" "+ x.Str));
-                
+                string data = string.Join(Environment.NewLine, resultAllList.Select((x) => x.Number + " " + x.Str));
+
                 sw.WriteLine(data);
             }
 
