@@ -1,0 +1,16 @@
+﻿<Window x:Class="SortFile.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SortFile"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <TextBox x:Name="textboxOpen" HorizontalAlignment="Left" Height="38" Margin="55,48,0,0" TextWrapping="Wrap" Text="Путь к файлу" VerticalAlignment="Top" Width="316"/>
+        <TextBox x:Name="textboxSave" HorizontalAlignment="Left" Height="38" Margin="55,119,0,0" TextWrapping="Wrap" Text="Путь к файлу" VerticalAlignment="Top" Width="316"/>
+        <Button x:Name="OpenBtn" Content="Open" HorizontalAlignment="Left" Margin="383,48,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="OpenBtn_Click"/>
+        <Button x:Name="SaveBtn" Content="Save" HorizontalAlignment="Left" Margin="383,119,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="SaveBtn_Click"/>
+        <Button x:Name="SortBtn" Content="Сортировка" HorizontalAlignment="Left" Margin="55,192,0,0" VerticalAlignment="Top" Width="316" Height="23" Click="SortBtn_Click"/>
+    </Grid>
+</Window>
