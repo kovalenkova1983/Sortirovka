@@ -25,6 +25,7 @@ namespace SortFile
 
     class StrList
     {
+       
         public string Str { get; set; }
         public int Number { get; set; }
 
@@ -38,7 +39,10 @@ namespace SortFile
             Str = str;
             Number = number;
         }
-
+        ~StrList()
+        {
+            MessageBox.Show(this.GetHashCode().ToString());
+        }
 
     }
 
@@ -89,46 +93,48 @@ namespace SortFile
 
             List<StrList> AllList = new List<StrList>();
 
-            StreamReader fs = new StreamReader(textboxOpen.Text);
+          
 
-            string s = (new StreamReader(textboxOpen.Text)).ReadToEnd();
-            Regex regex = new Regex(@"(\w*\d\s\w*)");
-            MatchCollection matches = regex.Matches(s);
-            if (matches.Count > 0)
-            {
-                foreach (Match match in matches)
+
+                StreamReader fs = new StreamReader(textboxOpen.Text);
+
+                string s = (new StreamReader(textboxOpen.Text)).ReadToEnd();
+                Regex regex = new Regex(@"(\w*\d\s\w*)");
+                MatchCollection matches = regex.Matches(s);
+                if (matches.Count > 0)
                 {
-                    string str = match.Value;
-                    string[] all = str.Split(' ');
-                    AllList.Add(new StrList(Convert.ToInt32(all[0]), all[1]));
+                    foreach (Match match in matches)
+                    {
+                        string str = match.Value;
+                        string[] all = str.Split(' ');
+                        AllList.Add(new StrList(Convert.ToInt32(all[0]), all[1]));
+
+                    }
 
                 }
+                else
+                {
+                    MessageBox.Show("Совпадений не найдено");
+                }
 
-            }
-            else
-            {
-                MessageBox.Show("Совпадений не найдено");
-            }
+                List<StrList> resultAllList = new List<StrList>();
 
-            List<StrList> resultAllList = new List<StrList>();
-            var result = from user in AllList
-                         orderby user.Str, user.Number, user.Str.Length
-                         select user;
-            foreach (StrList u in result)
-            {
-                resultAllList.Add(new StrList(u.Number, u.Str));
-            }
-
-
-            using (StreamWriter sw = new StreamWriter(textboxSave.Text, false, System.Text.Encoding.Default))
-            {
-
-                string data = string.Join(Environment.NewLine, resultAllList.Select((x) => x.Number + " " + x.Str));
-
-                sw.WriteLine(data);
-            }
+                var result = from user in AllList
+                             orderby user.Str, user.Number, user.Str.Length
+                             select user;
+                foreach (StrList u in result)
+                {
+                    resultAllList.Add(new StrList(u.Number, u.Str));
+                }
 
 
+                using (StreamWriter sw = new StreamWriter(textboxSave.Text, false, System.Text.Encoding.Default))
+                {
+
+                    string data = string.Join(Environment.NewLine, resultAllList.Select((x) => x.Number + " " + x.Str));
+
+                    sw.WriteLine(data);
+                }
 
         }
     }
